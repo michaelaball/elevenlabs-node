@@ -319,6 +319,54 @@ const editVoiceSettings = async (apiKey, voiceID, stability, similarityBoost) =>
 	}
 };
 
+
+/**
+
+Function that returns an object containing the status of the add voice operation.
+
+@param {string} apiKey - The API key to authenticate the request.
+
+@param {string} name - The name that identifies this voice. This will be displayed in the dropdown of the website.
+
+@param {array} files - One or more audio files to clone the voice from.  Provide array of read streams
+
+@param {string} description - How would you describe the voice?
+
+@param {string} label - Serialized labels dictionary for the voice.
+
+@returns {Object} - An object containing the status of the add voice operation.
+*/
+const addVoice = async (apiKey, name, files, description='', label='') => {
+	try {
+
+		if (!apiKey || !name || !files || !(files.length > 0)) {
+			console.log('ERR: Missing parameter');
+		}
+
+		const addURL = `${elevenLabsAPI}/voices/add`;
+
+		const response = await axios({
+			method: 'POST',
+			url: addURL,
+			data: {
+				name,
+				files,
+				description,
+				labels,
+			},
+			headers: {
+				'xi-api-key': apiKey,
+				'Content-Type': 'multipart/form-data'
+			}
+		});
+
+		return response.data;
+
+	} catch (error) {
+		console.log(error);
+	}
+};
+
 module.exports = {
 	textToSpeech: textToSpeech,
 	textToSpeechStream: textToSpeechStream,
