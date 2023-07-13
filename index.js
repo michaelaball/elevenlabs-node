@@ -368,12 +368,13 @@ const addVoice = async (apiKey, name, files, description='', label='') => {
 };
 
 module.exports = {
-	textToSpeech: textToSpeech,
-	textToSpeechStream: textToSpeechStream,
-	getVoices: getVoices,
-	getDefaultVoiceSettings: getDefaultVoiceSettings,
-	getVoiceSettings: getVoiceSettings,
-	getVoice: getVoice,
-	deleteVoice: deleteVoice,
-	editVoiceSettings: editVoiceSettings
+	textToSpeech,
+	textToSpeechStream,
+	getVoices,
+	getDefaultVoiceSettings,
+	getVoiceSettings,
+	getVoice,
+	deleteVoice,
+	editVoiceSettings,
+	addVoice,
 };
